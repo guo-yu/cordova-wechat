@@ -4,16 +4,13 @@ just another wechat plugin for cordova, which will be always updated with the la
 
 ### Installation
 ```bash
-$ npm install cordova-wechat
+$ cordova plugin add https://github.com/turingou/cordova-wechat.git
 ```
 
 ### Example
 ```js
 var cordovaWechat = require('cordova-wechat');
 ```
-
-### API
-check this file: `index.js`
 
 ### Contributing
 - Fork this repo

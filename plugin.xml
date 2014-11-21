@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" 
+  id="me.guoyu.cordova.wechat" 
+  version="0.1.0">
+
+  <name>Wechat</name>
+  <description>Just another wechat plugin for cordova, which will be always updated with the lastest Wechat Official SDK</description>
+  <license>MIT</license>
+  <keywords>wechat,weixin,cordova,share</keywords>
+  <repo>https://github.com/turingou/cordova-wechat.git</repo>
+  <issue>https://github.com/turingou/cordova-wechat/issues</issue>
+
+  <js-module src="www/wechat.js" name="Wechat">
+    <clobbers target="Wechat" />
+  </js-module>
+
+  <platform name="ios">
+    <config-file target="config.xml" parent="/*">
+      <feature name="Wechat">
+        <param name="ios-package" value="CDVWechat"/>
+        <param name="onload" value="true" />
+      </feature>
+    </config-file>
+    <header-file src="src/ios/CDVWechat.h" />
+    <source-file src="src/ios/CDVWechat.m" />
+  </platform>
+
+</plugin>
