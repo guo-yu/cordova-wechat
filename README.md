@@ -7,6 +7,11 @@ just another wechat plugin for cordova, which will be always updated with the la
 $ cordova plugin add https://github.com/turingou/cordova-wechat.git
 ```
 
+### Plugin Setup
+
+1. The very first, follow the setup guide on [Wechat Open Platform](https://open.weixin.qq.com/cgi-bin/frame?t=resource/res_main_tmpl&verify=1&lang=zh_CN)
+2. 
+
 ### Example
 ```js
 var cordovaWechat = require('cordova-wechat');
