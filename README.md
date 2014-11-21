@@ -10,13 +10,13 @@ $ cordova plugin add https://github.com/turingou/cordova-wechat.git
 ### Plugin Setup
 
 1. The very first, follow the setup guide on [Wechat Open Platform](https://open.weixin.qq.com/cgi-bin/frame?t=resource/res_main_tmpl&verify=1&lang=zh_CN)
-2. Put offcial SDK `./src/<platform>/lib/<version>/WXApi.h` and `./src/<platform>/lib/<version>/WXApiObject.m` to your xcode project. (Replace <platform> and <version> with your pefer)
-3. On your xcode project `TARGETS > Build Settings > Basic`, Add field `Library Seach Paths` and set it as previous offcial SDK's real abs path.
-4. On your xcode project `TARGETS > Info`, Add Id `weixin` to your `URL Types` with `URL Schemes = YOUR_WECHAT_APP_ID` 
+2. Put offcial SDK `./src/<platform>/lib/<version>/WXApi.h` and `./src/<platform>/lib/<version>/WXApiObject.m` to your xcode project. (Replace `<platform>` and `<version>`with your pefer)
+3. On your xcode project tab `TARGETS > Build Settings > Basic`, Add field `Library Seach Paths` and set it as previous offcial SDK's real absolute path.
+4. On your xcode project tab `TARGETS > Info`, Add Id `weixin` to your `URL Types` with `URL Schemes = YOUR_WECHAT_APP_ID` 
 
 Then try to run `$ cordova build` in your project root.
 
-**Tips**: If xcode build error, make sure all `xcode` projects in your root project have a correct `Build Settings > All > Architectures > armv7 armv7s` instead of `armv6`.
+**Tips**: If **Xcode build error**, make sure all **Xcode projects** in your root project have a correct `Build Settings > All > Architectures > armv7 armv7s` value instead of `armv6`.
 
 ### Example
 ```js
