@@ -1,0 +1,25 @@
+{
+  "name": "cordova-wechat",
+  "version": "0.1.0",
+  "description": "just another wechat plugin for cordova, which will be always updated with the lastest Wechat Official SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/turingou/cordova-wechat.git"
+  },
+  "keywords": [
+    "wechat",
+    "cordova",
+    "weixin",
+    "cordova-plugin"
+  ],
+  "author": "turing <o.u.turing@Gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/turingou/cordova-wechat/issues"
+  },
+  "homepage": "https://github.com/turingou/cordova-wechat"
+}
