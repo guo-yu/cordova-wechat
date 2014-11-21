@@ -4,26 +4,28 @@
 
 #pragma mark "API"
 
-- (void)share:(CDVInvokedUrlCommand *)command 
+- (void) share:(CDVInvokedUrlCommand *)command 
 {
+  // Signup app by given `wechatAppId`
   [WXApi registerApp:self.wechatAppId];
 
-  CDVPluginResult *result = nil;
+  CDVPluginResult* result = nil;
 
   // If Wechat have not be installed in user's mobile phone
   if (![WXApi isWXAppInstalled]) {
     result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"未安装微信"];
 
-    [self error:result callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     return;
   }
 
   // Check arguments
-  NSDictionary *params = [command.arguments objectAtIndex:0];
+  NSDictionary* params = [command.arguments objectAtIndex:0];
+
   if (!params) {
     result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"参数错误"];
 
-    [self error:result callbackId:command.callbackId];
+    [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     return ;
   }
   
@@ -31,6 +33,7 @@
   // TODO: remove callbackId function
   self.currentCallbackId = command.callbackId;
   
+  // Build a Request object for WXApi
   SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
   
   // Check the scene
@@ -40,8 +43,8 @@
     req.scene = WXSceneTimeline;
   }
   
-  // Check if a message or a text
-  NSDictionary *message = [params objectForKey:@"message"];
+  // Check if `message` key exist.
+  NSDictionary* message = [params objectForKey:@"message"];
 
   if (message) {
     req.bText = NO;
@@ -60,9 +63,9 @@
 
 #pragma mark "WXApiDelegate"
 
-- (void)onResp:(BaseResp *)resp
+- (void) onResp:(BaseResp *)resp
 {
-  CDVPluginResult *result = nil;
+  CDVPluginResult* result = nil;
     
   BOOL success = NO;
 
@@ -99,18 +102,14 @@
     result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"Unknown"];
   }
     
-  if (success) {
-    [self success:result callbackId:self.currentCallbackId];
-  } else {
-    [self error:result callbackId:self.currentCallbackId];
-  }
+  [self.commandDelegate sendPluginResult:result callbackId:self.currentCallbackId];
     
   self.currentCallbackId = nil;
 }
 
 #pragma mark "CDVPlugin Overrides"
 
-- (void)handleOpenURL:(NSNotification *)notification
+- (void) handleOpenURL:(NSNotification *)notification
 {
   NSURL* url = [notification object];
   
@@ -124,7 +123,7 @@
 - (NSString *)wechatAppId
 {
   if (!_wechatAppId) {
-    CDVViewController *viewController = (CDVViewController *)self.viewController;
+    CDVViewController* viewController = (CDVViewController *)self.viewController;
     _wechatAppId = [viewController.settings objectForKey:@"wechatappid"];
   }
 
@@ -141,7 +140,7 @@
     
   // Media parameters
   id mediaObject = nil;
-  NSDictionary *media = [message objectForKey:@"media"];
+  NSDictionary* media = [message objectForKey:@"media"];
     
   // Check types
   NSInteger type = [[media objectForKey:@"type"] integerValue];
@@ -174,10 +173,10 @@
   return wxMediaMessage;
 }
 
-- (UIImage *)getUIImageFromURL:(NSString *)thumb
+- (UIImage *) getUIImageFromURL:(NSString *)thumb
 {
-  NSURL *thumbUrl = [NSURL URLWithString:thumb];
-  NSData *data = nil;
+  NSURL* thumbUrl = [NSURL URLWithString:thumb];
+  NSData* data = nil;
   
   if ([thumbUrl isFileURL]) {
     data = [NSData dataWithContentsOfFile:thumb]; // Local file
