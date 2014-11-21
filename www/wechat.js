@@ -39,7 +39,7 @@ function on(eventName, callback) {
  * @param  {[Function]} success [Event be triggered, optional]
  * @param  {[Function]} error   [Event be triggered, optional]
  * @example
- *   Wechat.share('timeline', {
+ *   wechat.share('timeline', {
  *     title: "Message",
  *     description: "Message Description (optional)",
  *     mediaTagName: "Media Tag Name (optional)",
